@@ -2,6 +2,9 @@ package com.devsuperior.desafio.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
@@ -11,14 +14,17 @@ public class Categoria {
     private Integer id;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    private String descricao;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Atividade> atividades = new ArrayList<>();
 
     public Categoria() {
     }
 
-    public Categoria(Integer id, String description) {
+    public Categoria(Integer id, String descricao) {
         this.id = id;
-        this.description = description;
+        this.descricao = descricao;
     }
 
     public Integer getId() {
@@ -29,11 +35,11 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
